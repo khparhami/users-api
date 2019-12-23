@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zip.api", "zip.api\zip.api.csproj", "{8FC7C4C9-B9A4-4A04-A347-C6C35E88BD87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zip.services", "zip.services\zip.services.csproj", "{6EF96C21-EF5A-4DA1-BF16-9808A8FFADAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "zip.repositories", "zip.repositories\zip.repositories.csproj", "{A1C97A92-2B9A-47C8-B843-2F7FA6215421}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{8FC7C4C9-B9A4-4A04-A347-C6C35E88BD87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FC7C4C9-B9A4-4A04-A347-C6C35E88BD87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FC7C4C9-B9A4-4A04-A347-C6C35E88BD87}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EF96C21-EF5A-4DA1-BF16-9808A8FFADAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EF96C21-EF5A-4DA1-BF16-9808A8FFADAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EF96C21-EF5A-4DA1-BF16-9808A8FFADAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EF96C21-EF5A-4DA1-BF16-9808A8FFADAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C97A92-2B9A-47C8-B843-2F7FA6215421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C97A92-2B9A-47C8-B843-2F7FA6215421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C97A92-2B9A-47C8-B843-2F7FA6215421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C97A92-2B9A-47C8-B843-2F7FA6215421}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
