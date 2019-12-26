@@ -4,8 +4,8 @@ WORKDIR /app
 # Copy everything and build
 COPY . ./
 
-RUN dotnet restore "./TodoApp.csproj"
-RUN dotnet publish "TodoApp.csproj" -c Release -o out
+RUN dotnet restore "./zip.api.csproj"
+RUN dotnet publish "zip.api.csproj" -c Release -o out
 
 
 FROM microsoft/dotnet:aspnetcore-runtime
