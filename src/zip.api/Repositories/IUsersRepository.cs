@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using zip.api.Models;
+using zip.api.Entities;
 
 namespace zip.api.Repositories
 {
@@ -12,6 +12,8 @@ namespace zip.api.Repositories
 
         void CreateUser(User user);
 
-        void AddAccount(Guid userId, Account account);
-    }
+        bool UpdateUser(User user);
+
+        User GetUserByEmail(string email);
+    };
 }

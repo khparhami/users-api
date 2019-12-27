@@ -1,11 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace zip.api.Exceptions
 {
     public class InsufficientCreditException: Exception
     {
+        public InsufficientCreditException():base("User does not have sufficient credit")
+        {
+
+        }
     }
 }

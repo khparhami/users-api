@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MongoDB.Driver;
 using zip.api.Config;
-using zip.api.Models;
+using zip.api.Entities;
 
 namespace zip.api.Database
 {

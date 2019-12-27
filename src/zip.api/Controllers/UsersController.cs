@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using zip.api.Models;
+using zip.api.Entities;
 using zip.api.Requests;
 using zip.api.Services;
 
@@ -13,41 +14,46 @@ namespace zip.api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUsersService usersService;
+        private readonly IMapper _mapper;
+        private readonly IUsersService _usersService;
 
-        public UsersController(IUsersService usersService)
+        public UsersController(IMapper mapper,IUsersService usersService)
         {
-            this.usersService = usersService;
+            _mapper = mapper;
+            _usersService = usersService;
         }
 
         [HttpGet(Name = "GetUsers")]
         public ActionResult<IEnumerable<User>> GetUsers()
         {
-            return Accepted();
+            return Ok(_usersService.GetUsers());
         }
 
         [HttpPost(Name = "CreateUser")]
         public ActionResult CreateUser([FromBody] CreateUserRequest user)
         {
-            return Accepted();
+            _usersService.CreateUser(_mapper.Map<User>(user));
+            return Ok();
         }
 
         [HttpGet("{userId:guid}", Name = "GetUser")]
         public ActionResult<User> GetUsers(Guid userId)
         {
-            return Accepted();
+            return Ok(_usersService.GetUserById(userId));
         }
 
         [HttpGet("{userId:guid}/Accounts", Name = "GetUserAccount")]
         public ActionResult<IEnumerable<Account>> GetUserAccount(Guid userId)
         {
-            return Accepted();
+            var user = _usersService.GetUserById(userId);
+            return Ok(user.Accounts);
         }
 
         [HttpPost("{userId:guid}/Accounts", Name = "CreateUserAccount")]
         public ActionResult CreateUserAccount(Guid userId, [FromBody] CreateUserAccountRequest userAccount)
         {
-            return Accepted();
+            _usersService.CreateUserAccount(userId, _mapper.Map<Account>(userAccount));
+            return Ok();
         }
     }
 }
