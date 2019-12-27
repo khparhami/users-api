@@ -7,7 +7,7 @@ using zip.api.Models;
 
 namespace zip.api.Database
 {
-    public class IDbContext
+    public class IUsersDbContext
     {
         IMongoCollection<User> Users { get; }
     }

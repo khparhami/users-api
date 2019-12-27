@@ -12,8 +12,8 @@ namespace zip.api.Services
 
         User GetUserById(Guid userId);
 
-        void CreateUser();
+        void CreateUser(User user);
 
-        void CreateUserAccount(Guid userId);
+        void CreateUserAccount(Guid userId, Account account);
     }
 }

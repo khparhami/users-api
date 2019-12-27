@@ -12,6 +12,6 @@ namespace zip.api.Repositories
 
         void CreateUser(User user);
 
-        void AddAccount(Account account);
+        void AddAccount(Guid userId, Account account);
     }
 }

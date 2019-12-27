@@ -32,7 +32,7 @@ namespace zip.api.Controllers
             return Accepted();
         }
 
-        [HttpGet("{userId:guid}", Name = "GetPartnerUser")]
+        [HttpGet("{userId:guid}", Name = "GetUser")]
         public ActionResult<User> GetUsers(Guid userId)
         {
             return Accepted();

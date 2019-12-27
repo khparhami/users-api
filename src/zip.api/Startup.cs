@@ -13,6 +13,8 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using zip.api.Config;
+using zip.api.Repositories;
+using zip.api.Services;
 
 namespace zip.api
 {
@@ -30,6 +32,12 @@ namespace zip.api
         {
             var config = new ServerConfig();
             Configuration.Bind(config);
+
+            var usersContext = new Database.UsersDbContext(config.MongoDB);
+            var usersRepository = new UsersRepository(usersContext);
+
+            services.AddSingleton<IUsersRepository>(usersRepository);
+            services.AddScoped<IUsersService, UsersService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>

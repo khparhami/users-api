@@ -10,7 +10,7 @@ namespace zip.api.Models
     {
         [BsonId]
         public Guid AccountId { get; set; }
-        public float Balance { get; set; }
+        public decimal Balance { get; set; }
         public string Currency { get; set; }
     }
 }

@@ -15,9 +15,9 @@ namespace zip.api.Models
 
         public string Email { get; set; }
 
-        public float MonthlySalary { get; set; }
+        public decimal MonthlySalary { get; set; }
 
-        public float MonthlyExpenses { get; set; }
+        public decimal MonthlyExpenses { get; set; }
 
         public Account[] Accounts { get; set; }
     }

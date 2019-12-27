@@ -8,11 +8,11 @@ using zip.api.Models;
 
 namespace zip.api.Database
 {
-    public class DbContext : IDbContext
+    public class UsersDbContext : IUsersDbContext
     {
         private readonly IMongoDatabase _db;
 
-        public DbContext(MongoDbConfig config)
+        public UsersDbContext(MongoDbConfig config)
         {
             var client = new MongoClient(config.ConnectionString);
             _db = client.GetDatabase(config.Database);
