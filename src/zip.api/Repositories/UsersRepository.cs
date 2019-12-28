@@ -22,13 +22,14 @@ namespace zip.api.Repositories
 
         public User GetUserById(Guid userId)
         {
-            var filter = Builders<User>.Filter.Eq(user => user.UserId, userId);
-            return _usersDbContext.Users.Find(filter).FirstOrDefault();
+            return GetUser(userId);
         }
 
-        public void CreateUser(User user)
+        public User CreateUser(User user)
         {
+            user.UserId = Guid.NewGuid();
             _usersDbContext.Users.InsertOne(user);
+            return GetUser(user.UserId);
         }
 
         public bool UpdateUser(User user)
@@ -46,6 +47,22 @@ namespace zip.api.Repositories
         public User GetUserByEmail(string email)
         {
             var filter = Builders<User>.Filter.Eq(user => user.Email, email);
+            return _usersDbContext.Users.Find(filter).FirstOrDefault();
+        }
+
+        public bool DeleteUser(Guid userId)
+        {
+            var filter = Builders<User>.Filter.Eq(usr => usr.UserId, userId);
+            var deleteResult = _usersDbContext
+                .Users
+                .DeleteOne(filter);
+            return deleteResult.IsAcknowledged
+                   && deleteResult.DeletedCount > 0;
+        }
+
+        private User GetUser(Guid id)
+        {
+            var filter = Builders<User>.Filter.Eq(user => user.UserId, id);
             return _usersDbContext.Users.Find(filter).FirstOrDefault();
         }
     }

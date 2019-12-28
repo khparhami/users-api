@@ -11,6 +11,7 @@ namespace zip.api.Requests
         [Required]
         public string Name { get; set; }
         [Required]
+        [EmailAddress(ErrorMessage = "Invalid Email Address")]
         public string Email { get; set; }
         [Required]
         [Range(0.0, Double.MaxValue, ErrorMessage = "MonthlySalary must be a positive number")]

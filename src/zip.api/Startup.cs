@@ -45,9 +45,9 @@ namespace zip.api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info
+                c.SwaggerDoc(Constants.ApiVersion.V1, new Info
                 {
-                    Version ="v1",
+                    Version = Constants.ApiVersion.V1,
                     Title = Configuration["ProjectsDetails:Title"],
                     Description = Configuration["ProjectsDetails:Description"],
                     Contact = new Contact
@@ -55,6 +55,11 @@ namespace zip.api
                         Name = Configuration["ProjectsDetails:ContactName"]
                     }
                 });
+
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -69,6 +74,7 @@ namespace zip.api
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", Configuration["ProjectsDetails:DocumentationTitle"]);
                 c.RoutePrefix = string.Empty;
             });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

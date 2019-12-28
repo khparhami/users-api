@@ -10,10 +10,12 @@ namespace zip.api.Repositories
 
         User GetUserById(Guid userId);
 
-        void CreateUser(User user);
+        User CreateUser(User user);
 
         bool UpdateUser(User user);
 
         User GetUserByEmail(string email);
+
+        bool DeleteUser(Guid userId);
     };
 }

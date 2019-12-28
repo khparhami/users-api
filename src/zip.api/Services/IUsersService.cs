@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using zip.api.Entities;
 
 namespace zip.api.Services
 {
     public interface IUsersService
     {
-        IEnumerable<User> GetUsers();
+        ServiceResult<IEnumerable<User>> GetUsers();
 
-        User GetUserById(Guid userId);
+        ServiceResult<User> GetUserById(Guid userId);
 
-        void CreateUser(User user);
+        ServiceResult<User> CreateUser(User user);
 
-        void CreateUserAccount(Guid userId, Account account);
+        ServiceResult<bool> CreateUserAccount(Guid userId, Account account);
+
+        ServiceResult<bool> DeleteUser(Guid userId);
     }
 }
