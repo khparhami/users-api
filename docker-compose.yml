@@ -11,8 +11,8 @@ services:
     ports:
       - 27017:27017
 
-  uasers-api-server:
-    build: ./src/zip.api
+  users-api-server:
+    build: .
     restart: always
     ports:
       - 5000:80

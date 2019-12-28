@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Net;
 using FluentAssertions;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
 using zip.api.Entities;
-using zip.api.Exceptions;
 using zip.api.Repositories;
 using zip.api.Services;
 
-namespace zip.api.tests
+namespace zip.api.tests.Unit_Tests
 {
     public class UserServiceTests
     {
@@ -22,7 +21,7 @@ namespace zip.api.tests
         }
 
         [Fact]
-        public void CreateUserShouldThrowAnExceptionIfUserWithSameEmailExists()
+        public void CreateUserShould422StatusCodeIfUserWithSameEmailExists()
         {
             var existingUser = new User()
             {
@@ -42,14 +41,15 @@ namespace zip.api.tests
             _mockedUserRepository.GetUserByEmail(existingUser.Email).Returns(existingUser);
             var target = new UsersService(_mockedUserRepository);
 
-            target.Invoking(service => service.CreateUser(creatingUser))
-                .Should().Throw<UserAlreadyExistsException>()
-                .WithMessage("User already exist with provided email address");
+            var actual = target.CreateUser(creatingUser);
+
+            actual.StatusCode.Should().BeEquivalentTo(HttpStatusCode.UnprocessableEntity);
+            actual.Model.Should().BeNull();
 
         }
 
         [Fact]
-        public void CreateUSerAccountShouldThrowAnExceptionIfNetIncomeIsLessThan1000()
+        public void CreateUSerAccountShouldReturn422StatusCodeIfNetIncomeIsLessThan1000()
         {
 
             var user = new User()
@@ -63,9 +63,10 @@ namespace zip.api.tests
             _mockedUserRepository.GetUserById(user.UserId).Returns(user);
             var target = new UsersService(_mockedUserRepository);
 
-            target.Invoking(service => service.CreateUserAccount(user.UserId, new Account()))
-                .Should().Throw<InsufficientCreditException>()
-                .WithMessage("User does not have sufficient credit");
+            var actual = target.CreateUserAccount(user.UserId, new Account());
+
+            actual.StatusCode.Should().BeEquivalentTo(HttpStatusCode.UnprocessableEntity);
+            actual.Model.Should().BeFalse();
 
         }
 
@@ -103,9 +104,10 @@ namespace zip.api.tests
 
             var target = new UsersService(_mockedUserRepository);
 
-            var result = target.GetUsers();
+            var actual = target.GetUsers();
 
-            result.Should().BeEquivalentTo(users);
+            actual.Model.Should().BeEquivalentTo(users);
+            actual.StatusCode.Should().BeEquivalentTo(HttpStatusCode.OK);
         }
 
         [Fact]
@@ -132,9 +134,11 @@ namespace zip.api.tests
 
             var target = new UsersService(_mockedUserRepository);
 
-            var result = target.GetUserById(expectedUser.UserId);
+            var actual = target.GetUserById(expectedUser.UserId);
 
-            result.Should().BeEquivalentTo(expectedUser);
+            actual.Model.Should().BeEquivalentTo(expectedUser);
+            actual.StatusCode.Should().BeEquivalentTo(HttpStatusCode.OK);
+
         }
 
         [Fact]
@@ -146,9 +150,10 @@ namespace zip.api.tests
 
             var target = new UsersService(_mockedUserRepository);
 
-            var result = target.GetUserById(notExistingId);
+            var actual = target.GetUserById(notExistingId);
 
-            result.Should().BeNull();
+            actual.Model.Should().BeNull();
+            actual.StatusCode.Should().BeEquivalentTo(HttpStatusCode.NotFound);
         }
     }
 }

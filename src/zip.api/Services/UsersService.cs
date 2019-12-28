@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net;
 using zip.api.Entities;
-using zip.api.Exceptions;
 using zip.api.Repositories;
 
 namespace zip.api.Services
@@ -45,7 +44,7 @@ namespace zip.api.Services
 
             if (existingUser != null)
             {
-                return new ServiceResult<User>(existingUser, HttpStatusCode.UnprocessableEntity);
+                return new ServiceResult<User>(null, HttpStatusCode.UnprocessableEntity);
             }
 
             var  createdUser = _usersRepository.CreateUser(user);

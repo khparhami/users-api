@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Remotion.Linq.Parsing.ExpressionVisitors.Transformation.PredefinedTransformations;
+using Swashbuckle.AspNetCore.Swagger;
 using zip.api.Entities;
 using zip.api.Requests;
 using zip.api.Services;
@@ -135,11 +136,13 @@ namespace zip.api.Controllers
         /// <param name="userAccount">Account to be created under the user</param>
         /// <response code="201">Account created for the user</response>
         /// <response code="404">User not found</response>
+        /// <response code="422">Unprocessable Entity, Insufficient credit</response>
         /// <response code="400">A validation error has occurred or there was something wrong with the request.</response>
         /// <response code="500">An error has occurred</response>
         [HttpPost("{userId:guid}/Accounts", Name = "CreateUserAccount")]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
+        [ProducesResponseType(422)]
         [ProducesResponseType(500)]
         public ActionResult CreateUserAccount(Guid userId, [FromBody] CreateUserAccountRequest userAccount)
         {
@@ -155,7 +158,7 @@ namespace zip.api.Controllers
             }
         }
 
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpDelete("{userId:guid}")]
         public ActionResult<bool> Delete(Guid userId)
         {
             try
