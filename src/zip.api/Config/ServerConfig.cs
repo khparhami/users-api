@@ -2,6 +2,6 @@
 {
     public class ServerConfig
     {
-        public MongoDbConfig MongoDB { get; set; } = new MongoDbConfig();
+        public MongoDbConfig MongoDb { get; set; } = new MongoDbConfig();
     }
 }

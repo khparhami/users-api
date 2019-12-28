@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace zip.api
+﻿namespace zip.api
 {
     public static class Constants
     {

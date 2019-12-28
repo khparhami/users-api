@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Remotion.Linq.Parsing.ExpressionVisitors.Transformation.PredefinedTransformations;
-using Swashbuckle.AspNetCore.Swagger;
 using zip.api.Entities;
 using zip.api.Requests;
 using zip.api.Services;

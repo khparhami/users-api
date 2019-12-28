@@ -2,7 +2,7 @@
 using System.Net.Http;
 using zip.api.Requests;
 
-namespace zip.api.tests.Integration_Tests
+namespace zip.api.integration
 {
     public class UsersClient: ClientBase
     {

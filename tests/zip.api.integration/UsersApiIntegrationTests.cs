@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 using Xunit;
 using zip.api.Entities;
 using zip.api.Requests;
-using zip.api.tests.Integration_Tests;
 
 namespace zip.api.integration
 {

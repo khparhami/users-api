@@ -2,7 +2,7 @@
 using System.Text;
 using Newtonsoft.Json;
 
-namespace zip.api.tests.Integration_Tests
+namespace zip.api.integration
 {
     public abstract class ClientBase
     {

@@ -54,7 +54,7 @@ namespace zip.api.Services
 
         public ServiceResult<bool> CreateUserAccount(Guid userId, Account account)
         {
-            var user = this._usersRepository.GetUserById(userId);
+            var user = _usersRepository.GetUserById(userId);
 
             if (user == null)
             {
