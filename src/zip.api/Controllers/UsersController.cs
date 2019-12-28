@@ -158,6 +158,7 @@ namespace zip.api.Controllers
             }
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpDelete("{userId:guid}")]
         public ActionResult<bool> Delete(Guid userId)
         {

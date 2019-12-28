@@ -5,6 +5,8 @@ WORKDIR /app
 COPY . ./
 
 RUN dotnet restore "./src/zip.api/zip.api.csproj"
+RUN dotnet restore "./tests/zip.api.tests/zip.api.tests.csproj"
+RUN dotnet test "./tests/zip.api.tests/zip.api.tests.csproj"
 RUN dotnet publish "./src/zip.api/zip.api.csproj" -c Release -o out
 
 

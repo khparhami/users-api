@@ -9,7 +9,7 @@ using zip.api.Entities;
 using zip.api.Repositories;
 using zip.api.Services;
 
-namespace zip.api.tests.Unit_Tests
+namespace zip.api.tests
 {
     public class UserServiceTests
     {
