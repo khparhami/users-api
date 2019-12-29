@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Net.Http;
+using zip.api.Entities;
 using zip.api.Requests;
 
 namespace zip.api.integration
@@ -33,6 +34,24 @@ namespace zip.api.integration
             };
 
             return _client.SendAsync(httpRequestMessage).Result;
+        }
+
+
+        public HttpResponseMessage GetUserAccounts(Guid userId)
+        {
+            var httpRequestMessage = new HttpRequestMessage
+            {
+                Method = HttpMethod.Get,
+                RequestUri = new Uri($"{_client.BaseAddress}{RequestBaseUri}/{userId}/accounts"),
+            };
+
+            return _client.SendAsync(httpRequestMessage).Result;
+        }
+
+        public HttpResponseMessage CreateAccount(Guid userId, CreateUserAccountRequest request)
+        {
+            return _client.PostAsync(new Uri($"{_client.BaseAddress}{RequestBaseUri}/{userId}/accounts"),
+                GetJsonStringContent(request)).Result;
         }
 
         public HttpResponseMessage DeleteUser(Guid userId)

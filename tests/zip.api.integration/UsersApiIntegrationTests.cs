@@ -130,6 +130,39 @@ namespace zip.api.integration
 
         }
 
+        [Fact]
+        public void CreateUserAccountShouldReturnStatusCodeOf201AndItShouldBeAddedToUserObject()
+        {
+            var usersToBeDeleted = new List<User>();
+
+            var userRequest = new CreateUserRequest
+            {
+                Email = "test@test.com",
+                MonthlyExpenses = 1000,
+                MonthlySalary = 20000,
+                Name = "testing"
+            };
+
+            var httpResponseMessage = _client.CreateUser(userRequest);
+            var createdUser = DeserializeHttpResponseMessageContentAsync<User>(httpResponseMessage).Result;
+
+            usersToBeDeleted.Add(createdUser);
+
+            httpResponseMessage = _client.CreateAccount(createdUser.UserId, new CreateUserAccountRequest
+            {
+                Balance = 0,
+                Currency = "AUD"
+            });
+
+            httpResponseMessage.StatusCode.Should().BeEquivalentTo(HttpStatusCode.Created);
+
+            httpResponseMessage = _client.GetUserAccounts(createdUser.UserId);
+            var accounts = DeserializeHttpResponseMessageContentAsync<IEnumerable<Account>>(httpResponseMessage).Result.ToList();
+            accounts.Count.Should().Be(1);
+
+            DeleteUsers(usersToBeDeleted);
+
+        }
         private void DeleteUsers(IEnumerable<User> users)
         {
             foreach (var user in users)
