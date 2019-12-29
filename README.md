@@ -1,7 +1,7 @@
 # Users API
 This repo is a test for creating a simple users api using dotnet core 2.2, mongoDb running in docker.
 
-## prerequisite 
+## Prerequisite 
 dotnet core 2.2 needs to be installed to run integration tests since it's not dockerized.
 
 ## Run api and tests
